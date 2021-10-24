@@ -1,0 +1,3 @@
+este é o modelo padrão do ambiente LARAVEL
+
+*** NÃO FAZER NENHUMA ALTERAÇÃO ***
