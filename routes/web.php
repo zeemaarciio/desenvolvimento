@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use DevImobiliaria\Http\Controllers\PropertyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,15 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/imoveis', [PropertyController::class, 'index']);
+
+Route::get('/imoveis/novo', [PropertyController::class, 'create']);
+Route::post('/imoveis/store', [PropertyController::class, 'store']);
+
+Route::get('/imoveis/{url}', [PropertyController::class, 'show']);
+
+Route::get('/imoveis/editar/{url}', [PropertyController::class, 'edit']);
+Route::put('/imoveis/update/{url}', [PropertyController::class, 'update']);
+
+Route::get('/imoveis/remover/{url}', [PropertyController::class, 'destroy']);
