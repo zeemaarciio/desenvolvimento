@@ -2,39 +2,43 @@
 
 @section('content')
 
-<h1>Formulário de Edição - Imóveis</h1>
+    <div class="container my-3">
 
-<?php
-$property = $property[0];
-?>
+        <h1>Formulário de Edição - Imóveis</h1>
 
-<form action="<?= url('imoveis/update', ['id' => $property->id]); ?>" method="post">
+        <?php
+        $property = $property[0];
+        ?>
 
-    <?= csrf_field(); ?>
-    <?= method_field('PUT'); ?>
+        <form action="<?= url('imoveis/update', ['id' => $property->id]) ?>" method="post">
 
-    <label for="title">Título do imóvel</label>
-    <input type="text" name="title" id="title" value="<?= $property->title; ?>">
+            <?= csrf_field() ?>
+            <?= method_field('PUT') ?>
 
-    <br />
+            <div class="form-group">
+                <label for="title">Título do imóvel</label>
+                <input type="text" name="title" id="title" value="<?= $property->title ?>" class="form-control">
+            </div>
 
-    <label for="description">Descrição do Imóvel</label>
-    <textarea name="description" id="description" cols="30" rows="10"><?= $property->description; ?></textarea>
+            <div class="form-group">
+                <label for="description">Descrição do Imóvel</label>
+                <textarea name="description" id="description" cols="30" rows="10" class="form-control"><?= $property->description ?></textarea>
+            </div>
 
-    <br />
+            <div class="form-group">
+                <label for="rental_price">Valor de Locação</label>
+                <input type="text" name="rental_price" id="rental_price" value="<?= $property->rental_price ?>" class="form-control">
+            </div>
 
-    <label for="rental_price">Valor de Locação</label>
-    <input type="text" name="rental_price" id="rental_price" value="<?= $property->rental_price; ?>">
+            <div class="form-group">
+                <label for="sale_price">Valor de Compra</label>
+                <input type="text" name="sale_price" id="sale_price" value="<?= $property->sale_price ?>" class="form-control">
+            </div>
 
-    <br />
+            <button type="submit" class="btn btn-primary">Atualizar Imóvel</button>
 
-    <label for="sale_price">Valor de Compra</label>
-    <input type="text" name="sale_price" id="sale_price" value="<?= $property->sale_price; ?>">
+        </form>
 
-    <br />
-
-    <button type="submit">Atualizar Imóvel</button>
-
-</form>
+    </div>
 
 @endsection

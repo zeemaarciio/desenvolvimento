@@ -2,26 +2,30 @@
 
 @section('content')
 
-<h1>Informações Completas</h1>
+<div class="container my-3">
 
-<?php 
+    <h1>Informações Completas</h1>
 
-    if(!empty($property)) {
+    <?php 
 
-        foreach($property as $prop) {
-            ?>
-            <h2>Título do Imóvel: <?= $prop->title; ?></h2>
+        if(!empty($property)) {
 
-            <p>Descrição: <?= $prop->description; ?></p>
+            foreach($property as $prop) {
+                ?>
+                <h2>Título do Imóvel: <?= $prop->title; ?></h2>
 
-            <p>Valor de Locação: R$ <?= number_format($prop->rental_price, 2, ',', '.')?></p>
+                <p>Descrição: <?= $prop->description; ?></p>
 
-            <p>Valor de Venda: R$ <?= number_format($prop->sale_price, 2, ',', '.')?></p>
-            <?php
+                <p>Valor de Locação: R$ <?= number_format($prop->rental_price, 2, ',', '.')?></p>
+
+                <p>Valor de Venda: R$ <?= number_format($prop->sale_price, 2, ',', '.')?></p>
+                <?php
+            }
+
         }
+    ?>
 
-    }
-?>
+</div>
 
 @endsection
 

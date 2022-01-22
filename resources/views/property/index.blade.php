@@ -2,39 +2,43 @@
 
 @section('content')
 
-<h1>Listagem de Produtos</h1>
+<div class="container my-3">
 
-<?php 
+    <h1>Listagem de Produtos</h1>
 
-if(!empty($properties)){
+    <?php 
 
-    echo "<table>";
+    if(!empty($properties)){
 
-    echo "<tr>
-                <td>Título</td>
-                <td>Valor de Locação</td>
-                <td>Valor de Compra</td>
-                <td>Ações</td>
-         </tr>";
+        echo "<table class='table table-striped table-hover'>";
 
-    foreach($properties as $property) {
+        echo "<thead class='bg-primary text-white'>
+                    <td>Título</td>
+                    <td>Valor de Locação</td>
+                    <td>Valor de Compra</td>
+                    <td>Ações</td>
+            </thead>";
 
-        $linkReadMode = url('/imoveis/' . $property->url);
-        $linkEditItem = url('/imoveis/editar/' . $property->url);
-        $linkRemoveItem = url('/imoveis/remover/' . $property->url);
+        foreach($properties as $property) {
 
-        echo "<tr>
-                    <td>{$property->title}</td>
-                    <td>R$ " . number_format($property->rental_price, 2, ',', '.') . "</td>
-                    <td>R$ " . number_format($property->sale_price, 2, ',', '.') . "</td>
-                    <td><a href='{$linkReadMode}'>Ver mais</a> | <a href='{$linkEditItem}'>Editar</a> | <a href='{$linkRemoveItem}'>Remover</a></td>
-             </tr>";
+            $linkReadMode = url('/imoveis/' . $property->url);
+            $linkEditItem = url('/imoveis/editar/' . $property->url);
+            $linkRemoveItem = url('/imoveis/remover/' . $property->url);
+
+            echo "<tr>
+                        <td>{$property->title}</td>
+                        <td>R$ " . number_format($property->rental_price, 2, ',', '.') . "</td>
+                        <td>R$ " . number_format($property->sale_price, 2, ',', '.') . "</td>
+                        <td><a href='{$linkReadMode}'>Ver mais</a> | <a href='{$linkEditItem}'>Editar</a> | <a href='{$linkRemoveItem}'>Remover</a></td>
+                </tr>";
+        }
+
+        echo "</table>";
+
     }
 
-    echo "</table>";
+    ?>
 
-}
-
-?>
+</div>
 
 @endsection
