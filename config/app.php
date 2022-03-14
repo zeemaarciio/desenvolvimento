@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'America/Sao_Paulo',
 
     /*
     |--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'pt-BR',
 
     /*
     |--------------------------------------------------------------------------
@@ -169,11 +169,11 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        DevImobiliaria\Providers\AppServiceProvider::class,
+        DevImobiliaria\Providers\AuthServiceProvider::class,
+        // DevImobiliaria\Providers\BroadcastServiceProvider::class,
+        DevImobiliaria\Providers\EventServiceProvider::class,
+        DevImobiliaria\Providers\RouteServiceProvider::class,
 
     ],
 
