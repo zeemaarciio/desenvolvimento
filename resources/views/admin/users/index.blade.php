@@ -1,3 +1,7 @@
+@extends('admin.master.master')
+
+@section('content')
+
 <section class="dash_content_app">
 
     <header class="dash_content_app_header">
@@ -6,18 +10,18 @@
         <div class="dash_content_app_header_actions">
             <nav class="dash_content_app_breadcrumb">
                 <ul>
-                    <li><a href="">Dashboard</a></li>
+                    <li><a href="{{ route('admin.home') }}">Dashboard</a></li>
                     <li class="separator icon-angle-right icon-notext"></li>
-                    <li><a href="" class="text-orange">Clientes</a></li>
+                    <li><a href="{{ route('admin.users.index') }}" class="text-orange">Clientes</a></li>
                 </ul>
             </nav>
 
-            <a href="dashboard.php?app=users/create" class="btn btn-orange icon-user ml-1">Criar Cliente</a>
+            <a href="{{ route('admin.users.create') }}" class="btn btn-orange icon-user ml-1">Criar Cliente</a>
             <button class="btn btn-green icon-search icon-notext ml-1 search_open"></button>
         </div>
     </header>
 
-    <?php include('filter.php'); ?>
+    @include('admin.users.filter')
 
     <div class="dash_content_app_box">
         <div class="dash_content_app_box_stage">
@@ -32,15 +36,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>1</td>
-                    <td><a href="" class="text-orange">Gustavo Web</a></td>
-                    <td>123.456.789-00</td>
-                    <td><a href="" class="text-orange">gustavo@upinside.com.br</a></td>
-                    <td>28/10/1992</td>
-                </tr>
+                @foreach ($users as $user)
+                    <tr>
+                        <td>{{ $user->id }}</td>
+                        <td><a href="{{ route('admin.users.edit', ['users' => $user->id]) }}" class="text-orange">{{ $user->name }}</a></td>
+                        <td>{{ $user->document }}</td>
+                        <td><a href="mailto:{{$user->email}}" class="text-orange">{{ $user->email }}</a></td>
+                        <td>{{ $user->date_of_birth }}</td>
+                    </tr>
+                @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 </section>
+@endsection
