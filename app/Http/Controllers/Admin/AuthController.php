@@ -22,7 +22,7 @@ class AuthController extends Controller
         return view('admin.dashboard');
     }
 
-    public function login(Request $request)
+    /*public function login(Request $request)
     {
         if (in_array('', $request->only('email', 'password'))) {
             $json['message'] = $this->message->error('Ooops, informe todos os dados para efetuar o login')->render();
@@ -50,6 +50,22 @@ class AuthController extends Controller
         exit;
         $json['redirect'] = route('admin.home');
         return response()->json($json);
+    }*/
+
+    public function login(Request $request){
+        $this->validate($request,[
+            'email'=>'required|email',
+            'password'=>'required'
+        ]);
+
+        dd(Auth::attempt(['email'=>$request['email'],'password'=>$request['password']]));
+
+        if(!Auth::attempt(['email'=>$request['email'],'password'=>$request['password']])){
+            return redirect()->back()->with(['fail'=>'Could Not Log You In']);
+        }
+
+        return redirect()->route('admin.home');
+
     }
 
     // public function login(Request $request)

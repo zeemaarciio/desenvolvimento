@@ -53,6 +53,7 @@ class User extends FormRequest
             //Acesso
 
             //'email' => 'required|email|unique:users',
+            'email' => (!empty($this->request->all()['id']) ? 'required|email|unique:users,email,' . $this->request->all()['id'] : 'required|email|unique:users,email'),
 
             //Cônjuge
             'type_of_communion' => 'required_if:civil_status,married,separated|in:Comunhão Universal de Bens,Comunhão Parcial de Bens,Separação Total de Bens,Participação Final de Aquestos',
