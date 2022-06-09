@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [EventController::class, 'index']);
+//Route::get('/events/create', [EventController::class, 'create'])->name('events.create');
+//Route::post('/events', [EventController::class, 'store'])->name('events.store');
+
+Route::resource('events', EventController::class);
+
+/*
+Route::get('/user/{id}/profile', function ($id) {
+    //
+})->name('profile');
+*/
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
