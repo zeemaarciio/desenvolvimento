@@ -31,12 +31,26 @@
                         <li class="nav-item">
                             <a href="{{ url('events/create') }}" class="nav-link">Criar Eventos</a>
                         </li>
+                        @auth
                         <li class="nav-item">
-                            <a href="/" class="nav-link">Entrar</a>
+                            <a href="{{ url('home') }}" class="nav-link">Meus eventos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/" class="nav-link">Cadastrar</a>
+                            <form action="{{ url('logout') }}" method="POST">
+                                @csrf
+                                <a href="" class="nav-link" onclick="event.preventDefault();
+                                    this.closest('form').submit();">Sair</a>
+                            </form>
                         </li>
+                        @endauth
+                        @guest
+                        <li class="nav-item">
+                            <a href="{{ url('login') }}" class="nav-link">Entrar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ url('register') }}" class="nav-link">Cadastrar</a>
+                        </li>
+                        @endguest
                     </ul>
                 </div>
             </nav>
